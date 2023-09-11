@@ -1,5 +1,4 @@
-import { PingCommand, PingHandler } from "./commands/ping";
-
+import { PingHandler } from "./commands/ping";
 import { CommandInteraction } from "discord.js";
 
 export const handlers: {
