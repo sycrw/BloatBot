@@ -1,11 +1,11 @@
-import { Module } from '@nestjs/common';
+import { EntitiesModule } from '../entities/entities.module';
 import { GuildService } from './guild.service';
+import { Module } from '@nestjs/common';
 import { UserService } from './user.service';
-import { EntitiesModule } from 'src/entities/entities.module';
 
 @Module({
-    imports: [EntitiesModule],
-    providers: [GuildService, UserService],
-    exports: [GuildService, UserService]
+  imports: [EntitiesModule],
+  providers: [GuildService, UserService],
+  exports: [GuildService, UserService],
 })
-export class UtilModule { }
+export class UtilModule {}

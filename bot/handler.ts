@@ -1,5 +1,8 @@
+import { CommandInteraction, Message } from "discord.js";
+
 import { PingHandler } from "./commands/ping";
-import { CommandInteraction } from "discord.js";
+import axios from "axios";
+import { env } from "./env";
 
 export const handlers: {
   [key: string]: (interaction: CommandInteraction) => Promise<any>;
@@ -12,4 +15,14 @@ export const handleInteraction = (interaction: CommandInteraction) => {
   console.log(handler.name, "handler");
   if (!handler) return;
   handler(interaction);
+};
+
+export const handleMessage = (message: Message) => {
+  const MessageDTO = {
+    content: message.content,
+    userId: message.author.id,
+    userName: message.author.username,
+    guildId: message.guild!.id,
+  };
+  console.log(MessageDTO);
 };

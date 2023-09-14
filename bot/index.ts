@@ -1,11 +1,9 @@
-import { Client, CommandInteraction, GatewayIntentBits, Message } from "discord.js";
+import { Client, GatewayIntentBits } from "discord.js";
 import { REST, Routes } from "discord.js";
+import { handleInteraction, handleMessage } from "./handler";
 
-import { MessageDto } from "@dto/message/message.dto"
-import { PingHandler } from "./commands/ping";
 import { commands } from "./commands";
 import { env } from "./env";
-import { handleInteraction } from "./handler";
 
 const { CLIENT_ID, TOKEN, API_KEY } = env;
 
@@ -53,11 +51,7 @@ client.on("interactionCreate", async (interaction) => {
  **/
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
-  console.log(message.toJSON());
-  const message2: MessageDto = {
-    userId: message.author.id,
-    content: message.content
-  }
+  handleMessage(message);
 });
 
 client.login(TOKEN);
